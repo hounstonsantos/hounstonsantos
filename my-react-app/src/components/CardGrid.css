@@ -1,5 +1,5 @@
 .card-grid {
-    display: flex;
+    display: ruby;
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     gap: 20px;
 }
