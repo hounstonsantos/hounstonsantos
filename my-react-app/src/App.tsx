@@ -1,34 +1,29 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import Card from './components/Card';
+import bandit from './assets/bandit.png';
+import chilli from './assets/chilli.png';
+import bingo from './assets/bingo.png';
+import bluey from './assets/bluey.png';
+import nana from './assets/nana.png';
+import socks from './assets/socks.png';
+import calypso from './assets/calypso.png';
+import muffin from './assets/muffin.png';
+
+import CardGrid from './components/CardGrid';
+
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <CardGrid>
+      <Card imageUrl={bandit}/>
+      <Card imageUrl={chilli}/>
+      <Card imageUrl={bingo}/>
+      <Card imageUrl={bluey}/>
+      <Card imageUrl={nana}/>
+      <Card imageUrl={socks}/>
+      <Card imageUrl={calypso}/>
+      <Card imageUrl={muffin}/>
+    </CardGrid>
   )
 }
 
