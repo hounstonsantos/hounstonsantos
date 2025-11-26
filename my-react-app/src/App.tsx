@@ -4,6 +4,8 @@ import cardList from './mocks/card-list.json';
 import type { CardState } from './models/CardState';
 import CardGrid from './components/CardGrid';
 import Counter from './components/Counter';
+import ResetButton from './components/ResetButton';
+import Header from './components/Header';
 
 import './App.css'
 const cards = [...cardList, ...cardList]
@@ -16,6 +18,11 @@ function App() {
 
   function setCardsStateWrapper(index: number) {
     const selectedCard = cardsState[index];
+
+    if (cardsState.filter(item => item.clicked && !item.pairFound).length >= 2 || selectedCard.clicked) {
+      return;
+    }
+
     const wrongCard = cardsState
       .find(item => item.name !== selectedCard.name && item.clicked && !item.pairFound);
 
@@ -42,11 +49,36 @@ function App() {
     setClickCount(clickCount + 1);
   }
 
+  function resetGame() {
+
+    cardsState.forEach(card => {
+      card.clicked = false;
+      card.pairFound = false;
+    });
+
+    setCardsState([...cardsState]);
+
+    const randomCards = [...cardList, ...cardList]
+      .sort(() => Math.random() - 0.5)
+      .map((item, index) => ({ ...item, id: index, clicked: false, pairFound: false }));
+
+    setTimeout(() => {
+      setCardsState(randomCards);
+      setClickCount(0);
+    }, 1000);
+
+  }
+
   return (
     <>
-      <Counter value={clickCount} />
+      <Header>
+        <Counter value={clickCount} />
+        <ResetButton onClick={() => {
+          resetGame();
+        }} />
+      </Header>
       <CardGrid>
-        {cards.map((item: CardState, index: number) => (
+        {cardsState.map((item: CardState, index: number) => (
           <Card key={index} character={item} onClick={setCardsStateWrapper} />
         ))}
       </CardGrid>
