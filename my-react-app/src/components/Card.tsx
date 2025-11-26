@@ -1,8 +1,8 @@
 import './Card.css';
 import cardBack from '../assets/card-back.png';
-import type { Character } from '../models/Character';
+import type { CardState } from '../models/CardState';
 
-function Card({ character, onClick }: { character: Character; onClick: (id: string) => void; }) {
+function Card({ character, onClick }: { character: CardState; onClick: (index: number) => void; }) {
     return (
         <div className='card-container'>
             <div className={character.clicked ? 'card clicked': 'card'} onClick={() => onClick(character.id)} data-clicked={character.clicked}>
